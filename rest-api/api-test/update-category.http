@@ -1,0 +1,8 @@
+PUT http://localhost:8080/categories/2
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MTYyMDA0NTIsInVzZXJJZCI6MX0.oJQXGIIEnLqGswsbgO3ohwGl_BKNTnrvxdJ1bYqWQOI
+
+{
+  "name": "newCategory",
+  "budget": 80
+}

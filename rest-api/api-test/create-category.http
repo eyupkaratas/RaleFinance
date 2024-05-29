@@ -1,0 +1,8 @@
+POST http://localhost:8080/categories
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MTYyNTg5MTksInVzZXJJZCI6MX0.lahknHTENNAOaryak8ydKHiBmI96i6NXB-A9QCYuYbo
+
+{
+  "name": "shopping3",
+  "budget": 1000
+}

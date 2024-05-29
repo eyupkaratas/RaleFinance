@@ -1,0 +1,152 @@
+<div class="container mx-auto p-4">
+  <mat-card class="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Finansal hedef">
+        <div class="p-6">
+          <form [formGroup]="financialForm" class="space-y-4">
+            <mat-form-field class="w-full">
+              <mat-label>Hedef adı</mat-label>
+              <input
+                matInput
+                placeholder="Hedef adını giriniz"
+                formControlName="goalText"
+              />
+            </mat-form-field>
+            <mat-form-field class="w-full">
+              <mat-label>Hedef miktar</mat-label>
+              <input
+                matInput
+                type="number"
+                placeholder="Hedef miktarınızı giriniz"
+                formControlName="goalValue"
+              />
+            </mat-form-field>
+            <div class="flex justify-end">
+              <button
+                mat-icon-button
+                color="primary"
+                [disabled]="!financialForm.dirty || !financialForm.valid"
+                (click)="updateUser()"
+              >
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Kategoriler">
+        <mat-card
+          class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg"
+        >
+          <form [formGroup]="categoryForm" (ngSubmit)="createCategory()">
+            <mat-form-field class="w-full">
+              <mat-label>Kategori adı</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Kategori adını giriniz"
+              />
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
+                Kategori adı gerekmektedir.
+              </mat-error>
+              <mat-error
+                *ngIf="categoryForm.get('name')?.hasError('minlength')"
+              >
+                Minimum 4 karakter gerekmektedir.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+              <mat-label>Kategori limiti</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="budget"
+                placeholder="Kategori limitini giriniz"
+              />
+              <mat-error
+                *ngIf="categoryForm.get('budget')?.hasError('required')"
+              >
+                Kategori limiti gerekmektedir.
+              </mat-error>
+              <mat-error
+                *ngIf="categoryForm.get('budget')?.hasError('minlength')"
+              >
+                Minimum 2 karakter gerekmektedir.
+              </mat-error>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="categoryForm.invalid"
+            >
+              Kategori ekle
+            </button>
+          </form>
+        </mat-card>
+        <div class="p-6">
+          <div class="container mx-auto p-4">
+            <mat-card
+              class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg"
+            >
+              <ng-container
+                *ngIf="
+                  authGlobalService.categories()!.length > 0;
+                  else noCategories
+                "
+              >
+                <div
+                  *ngFor="
+                    let category of authGlobalService.categories();
+                    let i = index
+                  "
+                  class="flex items-center space-x-4 mb-6"
+                >
+                  <mat-form-field class="flex-1">
+                    <mat-label>Kategori adı</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="category.name"
+                      placeholder="Kategori adını giriniz."
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="flex-1">
+                    <mat-label>Kategori limiti</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      [(ngModel)]="category.budget"
+                      placeholder="Kategori limitini giriniz."
+                    />
+                  </mat-form-field>
+                  <div class="flex items-center h-full space-x-2">
+                    <button
+                      mat-icon-button
+                      color="primary"
+                      (click)="updateCategory(category)"
+                    >
+                      <mat-icon>save</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      (click)="deleteCategory(category.id)"
+                    >
+                      <mat-icon>kapat</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #noCategories>
+                <div class="text-center text-gray-500">
+                  Kategori mevcut değil.
+                </div>
+              </ng-template>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

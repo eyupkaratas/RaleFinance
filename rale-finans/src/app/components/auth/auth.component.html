@@ -1,0 +1,89 @@
+<div class="max-w-md mx-auto mt-10 p-4 bg-white shadow-md rounded">
+  <mat-tab-group dynamicHeight class="w-full mb-6">
+    <mat-tab label="Giriş yap">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onLogin()"
+        class="flex flex-col gap-4"
+      >
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            type="password"
+            placeholder="Şifre"
+            formControlName="password"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="self-center mt-2"
+          [disabled]="!loginForm.valid"
+        >
+          Giriş yap
+        </button>
+      </form>
+    </mat-tab>
+
+    <mat-tab label="Hesap oluştur">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSignup()"
+        class="flex flex-col gap-4"
+      >
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            placeholder="İsim"
+            formControlName="name"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            placeholder="Soyisim"
+            formControlName="surname"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <input
+            matInput
+            type="password"
+            placeholder="Şifre"
+            formControlName="password"
+            class="w-full p-2"
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="self-center mt-2"
+          [disabled]="!registerForm.valid"
+        >
+          Kayıt ol
+        </button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+</div>

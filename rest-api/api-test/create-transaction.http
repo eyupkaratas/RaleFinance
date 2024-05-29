@@ -1,0 +1,10 @@
+POST http://localhost:8080/transactions
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MTYyNTM5NTIsInVzZXJJZCI6MX0.IEWSDBLmvmMFa_P_cbBENgofUMd1Inm9aFceU7EYDYM
+
+{
+  "dateTime": "2023-08-26T00:30:00Z",
+  "amount": 70,
+  "isIncome": 0,
+  "categoryId": 1
+}
